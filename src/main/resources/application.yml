@@ -2,6 +2,9 @@ spring:
   profiles:
     active: dev  # 기본값. 배포 시 prod로 오버라이드
 
+  config:
+    import: optional:classpath:application-secret.yml  # application-secret.yml import
+
   application:
     name: reservation-service
 
@@ -16,8 +19,7 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
-jwt:
-  secret: ${JWT_SECRET}          # 환경변수 필수
+jwt:       # 환경변수 필수
   access-expiration: 3600000     # 1시간 (ms)
   refresh-expiration: 1209600000 # 14일 (ms)
 
@@ -25,7 +27,6 @@ reservation:
   timeout-minutes: 15            # 결제 미완료 타임아웃
 
 toss:
-  secret-key: ${TOSS_SECRET_KEY}
   base-url: https://api.tosspayments.com/v1
 
 scheduler:
