@@ -26,7 +26,7 @@ public class JwtProvider {
     @Value("${jwt.refresh-expiration}")
     private Long refreshExpiration;
 
-    private RedisTemplate<String, String> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
     private static final String REFRESH_TOKEN_PREFIX = "refresh: ";
 
     public String generateAccessToken(Long userId, Role role) {
