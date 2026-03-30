@@ -6,7 +6,7 @@ spring:
     import: optional:classpath:application-secret.yml  # application-secret.yml import
 
   application:
-    name: reservation-service
+    name: pupildilation-service
 
   jpa:
     open-in-view: false          # OSIV 끄기 (API 서버엔 안티패턴)

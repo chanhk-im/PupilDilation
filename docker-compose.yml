@@ -1,10 +1,10 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: reservation-mysql
+    container_name: pupildilation-mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: reservation_dev
+      MYSQL_DATABASE: pupildilation_dev
       MYSQL_CHARACTER_SET_SERVER: utf8mb4
       MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
     ports:
@@ -19,7 +19,7 @@ services:
 
   redis:
     image: redis:7.2
-    container_name: reservation-redis
+    container_name: pupildilation-redis
     ports:
       - "6379:6379"
     volumes:
