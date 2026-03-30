@@ -7,7 +7,6 @@ import com.chanhk.pupildilation.global.common.Role;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,8 +23,7 @@ class JwtProviderTest {
 
     @BeforeEach
     void setUp() {
-        RedisTemplate<String, String> redisTemplate = mock();
-        jwtProvider = new JwtProvider(redisTemplate);
+        jwtProvider = new JwtProvider();
         ReflectionTestUtils.setField(jwtProvider, "secret", SECRET);
         ReflectionTestUtils.setField(jwtProvider, "accessExpiration", ACCESS_EXPIRATION);
         ReflectionTestUtils.setField(jwtProvider, "refreshExpiration", REFRESH_EXPIRATION);
