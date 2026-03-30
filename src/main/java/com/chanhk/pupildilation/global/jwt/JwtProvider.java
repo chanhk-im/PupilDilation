@@ -27,7 +27,7 @@ public class JwtProvider {
     private Long refreshExpiration;
 
     private RedisTemplate<String, String> redisTemplate;
-    private final String REFRESH_TOKEN_PREFIX = "refresh: ";
+    private static final String REFRESH_TOKEN_PREFIX = "refresh: ";
 
     public String generateAccessToken(Long userId, Role role) {
         Date now = new Date();
@@ -57,10 +57,10 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String token) {
-        Key jwtSecretKey = Keys.hmacShaKeyFor(secret.getBytes());
+        SecretKey jwtSecretKey = Keys.hmacShaKeyFor(secret.getBytes());
 
         try {
-            Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parseSignedClaims(token);
+            Jwts.parser().verifyWith(jwtSecretKey).build().parseSignedClaims(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
             return false;
