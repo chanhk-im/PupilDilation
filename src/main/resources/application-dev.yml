@@ -28,3 +28,7 @@ logging:
 # Mock 결제 사용 (토스 연동 X)
 payment:
   mode: mock
+
+app:
+  cors:
+    allowed-origins: "http://localhost:5173"
