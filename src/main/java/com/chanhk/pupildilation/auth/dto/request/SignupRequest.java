@@ -12,7 +12,8 @@ public record SignupRequest(
                 regexp = Constants.EMAIL_REGX_STRING,
                 message = Constants.EMAIL_VALID_MESSAGE)
         String email,
-        @NotBlank @Size(min = 8, max = 20, message = "비밀번호는 8~20자여야 합니다")
+        @NotBlank
+        @Size(min = 8, max = 20, message = "비밀번호는 8~20자여야 합니다")
         String password,
         @NotBlank String name
 ) {

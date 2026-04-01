@@ -69,7 +69,7 @@ public class AuthService {
         String refreshToken = jwtProvider.generateRefreshToken(user.getId(), user.getRole());
         refreshTokenManager.save(refreshToken, user.getId());
 
-        return new LoginResponse(accessToken, RESPONSE_TOKEN_TYPE);
+        return new LoginResponse(accessToken, refreshToken, RESPONSE_TOKEN_TYPE);
     }
 
     public void logout(LogoutRequest request) {

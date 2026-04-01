@@ -3,6 +3,8 @@ package com.chanhk.pupildilation.global.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestCookieException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,6 +20,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
         return createResponseEntity(ErrorCode.INVALID_INPUT_VALUE);
+    }
+
+    // 헤더 누락
+    @ExceptionHandler(MissingRequestHeaderException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestHeader(MissingRequestHeaderException e) {
+        return createResponseEntity(ErrorCode.MISSING_HEADER);
+    }
+
+    // 쿠키 누락
+    @ExceptionHandler(MissingRequestCookieException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestCookie(MissingRequestCookieException e) {
+        return createResponseEntity(ErrorCode.MISSING_COOKIE);
     }
 
     // 나머지 예상 못한 예외 (500)

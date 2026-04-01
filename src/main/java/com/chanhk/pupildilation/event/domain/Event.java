@@ -47,9 +47,11 @@ public class Event extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime bookingCloseAt;
 
+    @Builder.Default
     @Column(nullable = false)
     private Integer cancelDeadlineDays = 3;
 
+    @Builder.Default
     @Column(nullable = false)
     private Integer maxSeatsPerUser = 4;
 
