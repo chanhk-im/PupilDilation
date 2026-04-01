@@ -17,7 +17,11 @@ public enum ErrorCode {
 
     // Reservation
     RESERVATION_NOT_CONFIRMABLE(HttpStatus.CONFLICT, "R01", "결제 대기 중인 상태가 아닙니다."),
-    RESERVATION_ALREADY_CANCELLED(HttpStatus.CONFLICT, "R02", "이미 취소된 예매입니다.");
+    RESERVATION_ALREADY_CANCELLED(HttpStatus.CONFLICT, "R02", "이미 취소된 예매입니다."),
+
+    // Payment
+    PAYMENT_NOT_APPROVABLE(HttpStatus.CONFLICT, "P01", "결제 승인을 처리할 수 없습니다."),
+    PAYMENT_NOT_FAILABLE(HttpStatus.CONFLICT, "P02", "결제 취소 요청을 처리할 수 없습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
