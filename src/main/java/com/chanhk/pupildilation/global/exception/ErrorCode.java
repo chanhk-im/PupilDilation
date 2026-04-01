@@ -14,7 +14,10 @@ public enum ErrorCode {
     // EventSeat
     SEAT_NOT_AVAILABLE(HttpStatus.CONFLICT, "ES01", "이미 예매된 좌석입니다."),
     SEAT_NOT_CANCELLABLE(HttpStatus.CONFLICT, "ES02", "예매된 좌석이 아닙니다."),
-    ;
+
+    // Reservation
+    RESERVATION_NOT_CONFIRMABLE(HttpStatus.CONFLICT, "R01", "결제 대기 중인 상태가 아닙니다."),
+    RESERVATION_ALREADY_CANCELLED(HttpStatus.CONFLICT, "R02", "이미 취소된 예매입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
