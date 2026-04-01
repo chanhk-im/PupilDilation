@@ -40,4 +40,22 @@ public class User extends BaseEntity {
     public void changeName(String name) {
         this.name = name;
     }
+
+    public static User of(String email, String password, String name) {
+        return User.builder()
+                .email(email)
+                .password(password)
+                .name(name)
+                .role(Role.STUDENT)
+                .build();
+    }
+
+    public static User of(String email, String password, String name, Role role) {
+        return User.builder()
+                .email(email)
+                .password(password)
+                .name(name)
+                .role(role)
+                .build();
+    }
 }

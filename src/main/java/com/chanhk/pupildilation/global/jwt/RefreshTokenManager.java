@@ -14,7 +14,7 @@ public class RefreshTokenManager {
     @Value("${jwt.refresh-expiration}")
     private Long refreshExpiration;
 
-    private static final String REFRESH_TOKEN_PREFIX = "refresh: ";
+    private static final String REFRESH_TOKEN_PREFIX = "refresh:";
 
     public void save(String token, Long userId) {
         String key = REFRESH_TOKEN_PREFIX + userId;
@@ -29,5 +29,10 @@ public class RefreshTokenManager {
     public void deleteToken(Long userId) {
         String key = REFRESH_TOKEN_PREFIX + userId;
         redisTemplate.delete(key);
+    }
+
+    public boolean exists(Long userId) {
+        String key = REFRESH_TOKEN_PREFIX + userId;
+        return redisTemplate.hasKey(key);
     }
 }
