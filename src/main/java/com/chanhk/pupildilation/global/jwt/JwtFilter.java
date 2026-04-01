@@ -20,6 +20,7 @@ public class JwtFilter extends OncePerRequestFilter  {
     public static final String ROLE_PREFIX = "ROLE_";
 
     private final JwtProvider jwtProvider;
+    private final TokenBlacklistManager tokenBlacklistManager;
 
     @Override
     public void doFilterInternal(
@@ -29,7 +30,10 @@ public class JwtFilter extends OncePerRequestFilter  {
     ) throws ServletException, IOException {
         String token = resolveToken(request);
 
-        if (token != null && jwtProvider.validateToken(token)) {
+        if (token != null
+                && jwtProvider.validateToken(token)
+                && !tokenBlacklistManager.isBlacklisted(token)
+        ) {
             final Long userId = jwtProvider.extractUserId(token);
             final Role role = jwtProvider.extractRole(token);
 

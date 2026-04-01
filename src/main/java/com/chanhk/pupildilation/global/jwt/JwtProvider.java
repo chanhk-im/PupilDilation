@@ -70,6 +70,10 @@ public class JwtProvider {
         return Role.valueOf(getClaims(token).get("role", String.class));
     }
 
+    public Long getRemainingExpiration(String token) {
+        Date expiration = getClaims(token).getExpiration();
+        return expiration.getTime() - System.currentTimeMillis();
+    }
     private Claims getClaims(String token) {
         SecretKey jwtSecretKey = Keys.hmacShaKeyFor(secret.getBytes());
 
