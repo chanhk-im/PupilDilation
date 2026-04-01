@@ -44,4 +44,13 @@ public class Club extends BaseEntity {
     public void approve() {
         this.status = ClubStatus.APPROVED;
     }
+
+    public static Club of(Long userId, String name, String description) {
+        return Club.builder()
+                .userId(userId)
+                .name(name)
+                .description(description)
+                .status(ClubStatus.PENDING)
+                .build();
+    }
 }
