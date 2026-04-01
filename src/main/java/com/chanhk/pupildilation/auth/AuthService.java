@@ -87,7 +87,7 @@ public class AuthService {
 
         String encodedPassword = passwordEncoder.encode(request.password());
 
-        User user = User.of(request.email(), encodedPassword, request.clubName());
+        User user = User.of(request.email(), encodedPassword, request.clubName(), Role.CLUB);
         userRepository.save(user);
         Club club = Club.of(user.getId(), request.clubName(), request.description());
         clubRepository.save(club);

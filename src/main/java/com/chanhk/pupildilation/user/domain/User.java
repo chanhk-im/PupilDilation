@@ -49,4 +49,13 @@ public class User extends BaseEntity {
                 .role(Role.STUDENT)
                 .build();
     }
+
+    public static User of(String email, String password, String name, Role role) {
+        return User.builder()
+                .email(email)
+                .password(password)
+                .name(name)
+                .role(role)
+                .build();
+    }
 }
