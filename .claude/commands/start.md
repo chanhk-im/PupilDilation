@@ -16,6 +16,7 @@
 GitHub MCP로 이슈를 생성해줘.
 - 레포: chanhk-im/PupilDilation
 - 제목: [FEAT/FIX/...] 입력받은 작업 제목
+- 내용: 작업 상세 내용 체크리스트
 - 라벨: feat, fix, refactor, docs, test, ... (작업 성격에 맞게 판단)
 
 ## 2단계 — 노션 개발일지 생성
