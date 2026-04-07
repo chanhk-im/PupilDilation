@@ -36,7 +36,10 @@ public enum ErrorCode {
 
     // Refund
     REFUND_NOT_APPROVABLE(HttpStatus.CONFLICT, "RF01", "환불 승인을 처리할 수 없습니다."),
-    REFUND_NOT_FAILABLE(HttpStatus.CONFLICT, "RF02", "환불 취소 요청을 처리할 수 없습니다.");
+    REFUND_NOT_FAILABLE(HttpStatus.CONFLICT, "RF02", "환불 취소 요청을 처리할 수 없습니다."),
+
+    // Club
+    CLUB_NOT_FOUND(HttpStatus.NOT_FOUND, "CL01", "존재하지 않는 동아리입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
