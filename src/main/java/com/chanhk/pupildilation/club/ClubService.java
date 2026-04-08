@@ -46,6 +46,6 @@ public class ClubService {
     public ClubCreateResponse create(ClubCreateRequest request) {
         Club club = Club.of(request.userId(), request.clubName(), request.description());
         clubRepository.save(club);
-        return new ClubCreateResponse(club.getId());
+        return ClubCreateResponse.from(club);
     }
 }
