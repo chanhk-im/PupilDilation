@@ -1,6 +1,6 @@
 package com.chanhk.pupildilation.club.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public record FindByIdRequest(@NotBlank Long clubId) {
+public record FindByIdRequest(@NotNull Long clubId) {
 }

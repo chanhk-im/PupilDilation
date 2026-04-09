@@ -12,6 +12,7 @@ import com.chanhk.pupildilation.club.dto.response.FindByIdResponse;
 import com.chanhk.pupildilation.club.dto.response.FindByStatusResponse;
 import com.chanhk.pupildilation.club.dto.response.FindByStatusResponseElement;
 import com.chanhk.pupildilation.club.repository.ClubRepository;
+import com.chanhk.pupildilation.global.exception.club.ClubInvalidInputException;
 import com.chanhk.pupildilation.global.exception.club.ClubNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class ClubService {
     private final ClubRepository clubRepository;
 
     public FindByIdResponse findById(FindByIdRequest request) {
+        if (request.clubId() == null) {
+            throw new ClubInvalidInputException();
+        }
+
         Club club = clubRepository.findById(request.clubId())
                 .orElseThrow(ClubNotFoundException::new);
 
@@ -37,6 +42,9 @@ public class ClubService {
     }
 
     public FindByStatusResponse findByStatus(FindByStatusRequest request) {
+        if (request.status() == null) {
+            throw new ClubInvalidInputException();
+        }
         return new FindByStatusResponse(clubRepository.findByStatus(request.status()).stream()
                 .map(FindByStatusResponseElement::from)
                 .toList());
@@ -44,6 +52,15 @@ public class ClubService {
 
     @Transactional
     public ClubCreateResponse create(ClubCreateRequest request) {
+        if (request.userId() == null || request.clubName() == null || request.clubName().isBlank()
+                || request.description() == null) {
+            throw new ClubInvalidInputException();
+        }
+
+        if (clubRepository.existsByUserId(request.userId())) {
+
+        }
+
         Club club = Club.of(request.userId(), request.clubName(), request.description());
         clubRepository.save(club);
         return ClubCreateResponse.from(club);

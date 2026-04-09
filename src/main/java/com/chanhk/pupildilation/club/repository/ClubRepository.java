@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClubRepository extends JpaRepository<Club, Long> {
     Optional<Club> findByStatus(ClubStatus status);
+    boolean existsByUserId(Long userId);
 }
