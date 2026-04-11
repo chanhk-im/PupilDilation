@@ -9,8 +9,9 @@ import com.chanhk.pupildilation.auth.dto.response.ClubSignupResponse;
 import com.chanhk.pupildilation.auth.dto.response.LoginResponse;
 import com.chanhk.pupildilation.auth.dto.response.ReissueResponse;
 import com.chanhk.pupildilation.auth.dto.response.SignupResponse;
-import com.chanhk.pupildilation.club.domain.Club;
-import com.chanhk.pupildilation.club.repository.ClubRepository;
+import com.chanhk.pupildilation.club.ClubService;
+import com.chanhk.pupildilation.club.dto.request.ClubCreateRequest;
+import com.chanhk.pupildilation.club.dto.response.ClubCreateResponse;
 import com.chanhk.pupildilation.global.common.ClubStatus;
 import com.chanhk.pupildilation.global.common.Role;
 import com.chanhk.pupildilation.global.exception.jwt.ExpiredTokenException;
@@ -36,7 +37,7 @@ public class AuthService {
     public static final String PENDING_MESSAGE = "관리자 승인 대기 중입니다.";
 
     private final UserRepository userRepository;
-    private final ClubRepository clubRepository;
+    private final ClubService clubService;
     private final JwtProvider jwtProvider;
     private final RefreshTokenManager refreshTokenManager;
     private final TokenBlacklistManager tokenBlacklistManager;
@@ -89,10 +90,9 @@ public class AuthService {
 
         User user = User.of(request.email(), encodedPassword, request.clubName(), Role.CLUB);
         userRepository.save(user);
-        Club club = Club.of(user.getId(), request.clubName(), request.description());
-        clubRepository.save(club);
+        ClubCreateResponse club = clubService.create(new ClubCreateRequest(user.getId(), request.clubName(), request.description()));
 
-        return new ClubSignupResponse(club.getId(), ClubStatus.PENDING, PENDING_MESSAGE);
+        return new ClubSignupResponse(club.clubId(), ClubStatus.PENDING, PENDING_MESSAGE);
     }
 
     public ReissueResponse reissue(ReissueRequest request) {
