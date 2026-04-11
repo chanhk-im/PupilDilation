@@ -52,6 +52,8 @@ dependencies {
 
     // DB
     runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.springframework.boot:spring-boot-flyway'
+    implementation 'org.flywaydb:flyway-mysql'
 }
 
 test {
