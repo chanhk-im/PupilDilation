@@ -1,0 +1,1 @@
+- [DTO 분리가 실제 필요해짐](feedback_dto_separation.md) — 같은 필드도 결국 필드 변경으로 분리 필요

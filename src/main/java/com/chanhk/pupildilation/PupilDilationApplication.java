@@ -9,5 +9,4 @@ public class PupilDilationApplication {
     public static void main(String[] args) {
         SpringApplication.run(PupilDilationApplication.class, args);
     }
-
 }

@@ -39,3 +39,8 @@ out/
 ### yml ###
 application-secret.yml
 application-prod.yml
+
+### Claude Code ###
+.claude/settings.local.json
+.claude/setting.json
+.claude/projects/
