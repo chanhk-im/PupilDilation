@@ -40,7 +40,10 @@ public enum ErrorCode {
     // Club
     CLUB_NOT_FOUND(HttpStatus.NOT_FOUND, "CL01", "존재하지 않는 동아리입니다."),
     CLUB_INVALID_INPUT(HttpStatus.BAD_REQUEST, "CL02", "동아리 입력값이 올바르지 않습니다."),
-    CLUB_ALREADY_EXISTS(HttpStatus.CONFLICT, "CL03", "이미 존재하는 동아리입니다.");
+    CLUB_ALREADY_EXISTS(HttpStatus.CONFLICT, "CL03", "이미 존재하는 동아리입니다."),
+
+    // Venue
+    VENUE_NOT_FOUND(HttpStatus.NOT_FOUND, "V01", "존재하지 않는 공연장입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
