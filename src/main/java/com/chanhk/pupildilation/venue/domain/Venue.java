@@ -22,4 +22,13 @@ public class Venue extends BaseEntity {
 
     @Column(length = 255)
     private String address;
+
+    public static Venue of(String name, String address) {
+        return new Venue(name, address);
+    }
+
+    public void update(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 }
